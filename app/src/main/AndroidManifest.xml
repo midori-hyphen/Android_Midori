@@ -25,10 +25,12 @@
             </intent-filter>
         </activity>
 
-        <!-- 메인 화면 -->
+        <!-- 로그인 화면 -->
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:exported="false" />
+
+
 
     </application>
 
