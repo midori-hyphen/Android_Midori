@@ -15,16 +15,16 @@ class MidoriApplication : Application(), ImageLoaderFactory {
             }
             .memoryCache {
                 MemoryCache.Builder(this)
-                    .maxSizePercent(0.25) // 메모리의 25% 사용
+                    .maxSizePercent(0.25)
                     .build()
             }
             .diskCache {
                 DiskCache.Builder()
                     .directory(cacheDir.resolve("image_cache"))
-                    .maxSizePercent(0.02) // 디스크의 2% 사용
+                    .maxSizePercent(0.02)
                     .build()
             }
-            .crossfade(false) // crossfade 애니메이션 비활성화로 빠른 표시
+            .crossfade(false)
             .build()
     }
 } 

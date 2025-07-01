@@ -34,17 +34,15 @@ class SplashActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             SplashScreen {
-                // 3초 후 메인 화면으로 이동
                 navigateToMainScreen()
             }
         }
     }
     
     private fun navigateToMainScreen() {
-        // 3초 후 메인 화면으로 이동
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
-        finish() // 스플래시 화면 종료
+        finish()
     }
 }
 
@@ -56,7 +54,6 @@ fun SplashScreen(onTimeout: () -> Unit) {
         Font(R.font.saira_stencil_one_regular, FontWeight.Normal)
     )
 
-    // 3초 후 onTimeout 실행
     LaunchedEffect(Unit) {
         delay(3000)
         onTimeout()
@@ -74,13 +71,12 @@ fun SplashScreen(onTimeout: () -> Unit) {
                 .align(Alignment.BottomCenter)
                 .padding(bottom = 352.dp)
         ) {
-            // 최적화된 원본 SVG 사용
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
                     .data("file:///android_asset/icons.svg")
-                    .memoryCacheKey("midori_logo") // 메모리 캐시 키 설정
-                    .diskCacheKey("midori_logo") // 디스크 캐시 키 설정
-                    .crossfade(false) // 애니메이션 비활성화로 빠른 표시
+                    .memoryCacheKey("midori_logo")
+                    .diskCacheKey("midori_logo")
+                    .crossfade(false)
                     .build(),
                 contentDescription = "Midori SVG Icon",
                 modifier = Modifier.size(200.dp),
