@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  font-size: 14px;
+}
+.v0_40 {
+  width: 402px;
+  height: 874px;
+  background: rgba(0,196,72,1);
+  opacity: 1;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+}
+.name {
+  color: #fff;
+}
+.v0_44 {
+  width: 173px;
+  color: rgba(255,255,255,1);
+  position: absolute;
+  top: 446px;
+  left: 115px;
+  font-family: Saira Stencil One;
+  font-weight: Regular;
+  font-size: 48px;
+  opacity: 1;
+  text-align: center;
+}
