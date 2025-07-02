@@ -1,6 +1,7 @@
 package com.example.andoriod_midori
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -16,25 +17,32 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.example.andoriod_midori.ui.theme.Andoriod_midoriTheme
+import com.example.andoriod_midori.ui.theme.MidoriGreen
+import com.example.andoriod_midori.ui.theme.SairaStencilOneFont
+import com.example.andoriod_midori.utils.Constants
 import kotlinx.coroutines.delay
 
 class SplashActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            val splashScreen = installSplashScreen()
+            splashScreen.setKeepOnScreenCondition { false }
+        }
+        
         super.onCreate(savedInstanceState)
         setContent {
-            SplashScreen {
-                navigateToMainScreen()
+            Andoriod_midoriTheme {
+                SplashScreen {
+                    navigateToMainScreen()
+                }
             }
         }
     }
@@ -48,51 +56,43 @@ class SplashActivity : ComponentActivity() {
 
 @Composable
 fun SplashScreen(onTimeout: () -> Unit) {
-    val midoriGreen = Color(0xFF00C448)
-
-    val sairaStencilOne = FontFamily(
-        Font(R.font.saira_stencil_one_regular, FontWeight.Normal)
-    )
-
     LaunchedEffect(Unit) {
-        delay(3000)
+        delay(Constants.Timing.SPLASH_DELAY)
         onTimeout()
     }
 
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(midoriGreen)
+            .background(MidoriGreen)
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center,
             modifier = Modifier
                 .align(Alignment.BottomCenter)
-                .padding(bottom = 352.dp)
+                .padding(bottom = Constants.Dimensions.SPLASH_BOTTOM_PADDING.dp)
         ) {
             AsyncImage(
                 model = ImageRequest.Builder(LocalContext.current)
-                    .data("file:///android_asset/icons.svg")
+                    .data(Constants.Assets.MIDORI_ICON)
                     .memoryCacheKey("midori_logo")
                     .diskCacheKey("midori_logo")
                     .crossfade(false)
                     .build(),
                 contentDescription = "Midori SVG Icon",
-                modifier = Modifier.size(200.dp),
+                modifier = Modifier.size(Constants.Dimensions.SPLASH_LOGO_SIZE.dp),
                 contentScale = ContentScale.Fit
             )
 
             androidx.compose.foundation.layout.Spacer(
-                modifier = Modifier.size(16.dp)
+                modifier = Modifier.size(Constants.Dimensions.SPLASH_LOGO_TEXT_SPACING.dp)
             )
             
             Text(
-                text = "MIDORI",
-                color = Color.White,
-                fontSize = 48.sp,
-                fontFamily = sairaStencilOne,
-                fontWeight = FontWeight.Normal
+                text = Constants.Strings.APP_NAME,
+                style = androidx.compose.material3.MaterialTheme.typography.headlineLarge,
+                color = androidx.compose.material3.MaterialTheme.colorScheme.onPrimary
             )
         }
     }

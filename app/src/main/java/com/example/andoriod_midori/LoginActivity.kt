@@ -1,5 +1,6 @@
 package com.example.andoriod_midori
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -12,12 +13,14 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.example.andoriod_midori.ui.theme.Andoriod_midoriTheme
 import com.example.andoriod_midori.ui.theme.MidoriSpacing
+import com.example.andoriod_midori.utils.Constants
 
 class LoginActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +40,8 @@ class LoginActivity : ComponentActivity() {
 
 @Composable
 fun LoginScreen() {
+    val context = LocalContext.current
+    
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -47,7 +52,7 @@ fun LoginScreen() {
         Spacer(modifier = Modifier.height(MidoriSpacing.TopMargin))
         
         AsyncImage(
-            model = "file:///android_asset/icons.svg",
+            model = Constants.Assets.MIDORI_ICON,
             contentDescription = "MIDORI Character",
             modifier = Modifier
                 .size(150.dp)
@@ -56,14 +61,14 @@ fun LoginScreen() {
         )
         
         Text(
-            text = "MIDORI",
+            text = Constants.Strings.APP_NAME,
             style = MaterialTheme.typography.headlineMedium,
             color = MaterialTheme.colorScheme.onBackground,
             modifier = Modifier.padding(bottom = MidoriSpacing.XXXL)
         )
         
         Text(
-            text = "기숙사 일정부터 세탁실 현황, 외출 신청까지!",
+            text = Constants.Strings.LOGIN_MESSAGE,
             style = MaterialTheme.typography.titleMedium,
             color = MaterialTheme.colorScheme.onBackground,
             textAlign = TextAlign.Center,
@@ -72,7 +77,7 @@ fun LoginScreen() {
         )
         
         Text(
-            text = "스마트한 기숙사 생활을 경험해보세요.",
+            text = Constants.Strings.LOGIN_SUBTITLE,
             style = MaterialTheme.typography.labelMedium,
             color = MaterialTheme.colorScheme.onBackground,
             textAlign = TextAlign.Center,
@@ -83,7 +88,9 @@ fun LoginScreen() {
         
         OutlinedButton(
             onClick = {
-                // TODO: 로그인 로직 구현
+                val intent = Intent(context, MainActivity::class.java)
+                context.startActivity(intent)
+                (context as ComponentActivity).finish()
             },
             modifier = Modifier
                 .width(325.dp)
@@ -98,8 +105,8 @@ fun LoginScreen() {
             ),
             shape = RoundedCornerShape(16.dp),
             contentPadding = PaddingValues(
-                horizontal = MidoriSpacing.ButtonPaddingHorizontal, 
-                vertical = MidoriSpacing.ButtonPaddingVertical
+                horizontal = 76.dp,
+                vertical = 9.dp
             )
         ) {
             Row(
@@ -107,15 +114,15 @@ fun LoginScreen() {
                 horizontalArrangement = Arrangement.Center
             ) {
                 AsyncImage(
-                    model = "file:///android_asset/mirimlogo.svg",
+                    model = Constants.Assets.MIRIM_LOGO,
                     contentDescription = "Mirim Logo",
                     modifier = Modifier.size(24.dp)
                 )
                 
-                Spacer(modifier = Modifier.width(MidoriSpacing.IconToText))
+                Spacer(modifier = Modifier.width(12.dp))
                 
                 Text(
-                    text = "미림마고 계정으로 로그인",
+                    text = Constants.Strings.LOGIN_BUTTON,
                     style = MaterialTheme.typography.labelMedium,
                     maxLines = 1
                 )

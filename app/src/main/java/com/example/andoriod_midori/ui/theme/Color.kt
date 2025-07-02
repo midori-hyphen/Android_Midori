@@ -32,4 +32,13 @@ val BorderSecondary = Gray40
 val Success = MidoriGreen
 val Warning = Color(0xFFFFA726)
 val Error = Color(0xFFEF5350)
-val Info = Color(0xFF42A5F5) 
+val Info = Color(0xFF42A5F5)
+
+val MusicWidgetBackground = Color(0xFFCCB7E5)
+val MealWidgetBackground = Color(0xFF1E3A5F)
+val AnnouncementWidgetBackground = Color(0xFF8B4513)
+val ChatButtonBackground = Gray00
+val ChatButtonBorder = MidoriGreen
+
+val NavigationBackground = Gray10
+val NavigationBorder = Gray30 
