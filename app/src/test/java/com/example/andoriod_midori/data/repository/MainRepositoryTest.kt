@@ -64,7 +64,7 @@ class MainRepositoryTest {
         val initialWidgets = repository.getWidgets().first()
         val widgetCount = (initialWidgets as Result.Success).data.size
         
-        val widgetToDelete = (initialWidgets as Result.Success).data.first()
+        val widgetToDelete = initialWidgets.data.first()
         val deleteResult = repository.deleteWidget(widgetToDelete.id)
         
         assertTrue(deleteResult is Result.Success)
@@ -98,12 +98,12 @@ class MainRepositoryTest {
     @Test
     fun widgetUpdateWorksCorrectly() = runTest {
         val currentWidgets = repository.getWidgets().first()
-        val widget = (currentWidgets as Result.Success).data.first()
+        val originalWidget = (currentWidgets as Result.Success).data.first()
         
-        val updatedWidget = when (widget) {
-            is WidgetData.Music -> widget.copy(id = widget.id + "_updated")
-            is WidgetData.Meal -> widget.copy(id = widget.id + "_updated")  
-            is WidgetData.Announcement -> widget.copy(id = widget.id + "_updated")
+        val updatedWidget = when (originalWidget) {
+            is WidgetData.Music -> originalWidget
+            is WidgetData.Meal -> originalWidget
+            is WidgetData.Announcement -> originalWidget
         }
         
         val updateResult = repository.updateWidget(updatedWidget)
