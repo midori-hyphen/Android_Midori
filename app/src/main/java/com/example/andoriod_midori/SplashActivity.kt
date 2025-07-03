@@ -24,17 +24,26 @@ import androidx.compose.ui.unit.dp
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import com.example.andoriod_midori.R
 import com.example.andoriod_midori.ui.theme.Andoriod_midoriTheme
 import com.example.andoriod_midori.ui.theme.MidoriGreen
 import com.example.andoriod_midori.ui.theme.SairaStencilOneFont
 import com.example.andoriod_midori.utils.Constants
 import kotlinx.coroutines.delay
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SplashActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             val splashScreen = installSplashScreen()
-            splashScreen.setKeepOnScreenCondition { false }
+            
+            splashScreen.setKeepOnScreenCondition { 
+                false
+            }
+            splashScreen.setOnExitAnimationListener { splashScreenView ->
+                splashScreenView.remove()
+            }
         }
         
         super.onCreate(savedInstanceState)
@@ -57,7 +66,7 @@ class SplashActivity : ComponentActivity() {
 @Composable
 fun SplashScreen(onTimeout: () -> Unit) {
     LaunchedEffect(Unit) {
-        delay(Constants.Timing.SPLASH_DELAY)
+        delay(Constants.Timing.CUSTOM_SPLASH_DELAY)
         onTimeout()
     }
 
@@ -90,7 +99,7 @@ fun SplashScreen(onTimeout: () -> Unit) {
             )
             
             Text(
-                text = Constants.Strings.APP_NAME,
+                text = LocalContext.current.getString(R.string.app_name),
                 style = androidx.compose.material3.MaterialTheme.typography.headlineLarge,
                 color = androidx.compose.material3.MaterialTheme.colorScheme.onPrimary
             )

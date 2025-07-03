@@ -47,31 +47,11 @@ object Constants {
     }
     
     object Timing {
-        const val SPLASH_DELAY = 1500L
-    }
-    
-    object Strings {
-        const val APP_NAME = "MIDORI"
-        const val LOGIN_MESSAGE = "기숙사 일정부터 세탁실 현황, 외출 신청까지!"
-        const val LOGIN_SUBTITLE = "스마트한 기숙사 생활을 경험해보세요."
-        const val LOGIN_BUTTON = "미림마고 계정으로 로그인"
-        const val GREETING = "415호 미도리님 안녕하세요!"
-        const val TODAY_MUSIC = "오늘의 기상송"
-        const val BREAKFAST = "조식"
-        const val ANNOUNCEMENT = "안내"
-        const val CHAT = "채팅하기"
-        const val LAUNDRY = "세탁하기"
-        const val PLAY = "재생"
+        const val SPLASH_DELAY = 100L
+        const val CUSTOM_SPLASH_DELAY = 2000L
     }
     
     object Data {
-        val WEEK_DAYS = listOf("일", "월", "화", "수", "목", "금", "토")
         val SAMPLE_DATES = listOf("29", "30", "1", "2", "3", "4", "5")
-        const val SAMPLE_SONG_TITLE = "개화 (Flowering)"
-        const val SAMPLE_ARTIST = "LUCY"
-        const val SAMPLE_MEAL = "차조밥\n부대찌개\n어묵파프리카볶음\n로제전담\n깍두기"
-        const val SAMPLE_ANNOUNCEMENT = "여름 방학 퇴실 안내\n세탁실 점검 안내"
-        const val ROOM_NUMBER = "415호"
-        const val USER_NAME = "미도리"
     }
 } 

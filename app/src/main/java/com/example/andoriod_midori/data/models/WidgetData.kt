@@ -72,11 +72,50 @@ data class UserInfo(
 }
 
 enum class WidgetType {
-        LARGE_MUSIC,
+    LARGE_MUSIC,
     SMALL_MUSIC,
     SMALL_ANNOUNCEMENT,
     MEAL,
     LARGE_ANNOUNCEMENT
+}
+
+sealed class WidgetData {
+    abstract val id: String
+    abstract val type: WidgetType
+    
+    enum class WidgetType {
+        MUSIC_BIG,
+        MUSIC_SMALL,
+        MEAL,
+        ANNOUNCEMENT_SMALL,
+        ANNOUNCEMENT_BIG
+    }
+    
+    data class Music(
+        override val id: String,
+        override val type: WidgetType,
+        val settings: WidgetSettings.MusicWidgetSettings? = null
+    ) : WidgetData()
+    
+    data class Meal(
+        override val id: String,
+        override val type: WidgetType,
+        val settings: WidgetSettings.MealWidgetSettings? = null
+    ) : WidgetData()
+    
+    data class Announcement(
+        override val id: String,
+        override val type: WidgetType,
+        val settings: WidgetSettings.AnnouncementWidgetSettings? = null
+    ) : WidgetData()
+    
+    fun copy(settings: WidgetSettings?): WidgetData {
+        return when (this) {
+            is Music -> this.copy(settings = settings as? WidgetSettings.MusicWidgetSettings)
+            is Meal -> this.copy(settings = settings as? WidgetSettings.MealWidgetSettings)
+            is Announcement -> this.copy(settings = settings as? WidgetSettings.AnnouncementWidgetSettings)
+        }
+    }
 }
 
 @Stable

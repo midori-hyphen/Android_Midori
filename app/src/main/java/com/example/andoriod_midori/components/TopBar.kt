@@ -7,6 +7,8 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import com.example.andoriod_midori.R
 import com.example.andoriod_midori.ui.theme.MidoriSpacing
 import com.example.andoriod_midori.utils.Constants
 
@@ -22,7 +24,7 @@ fun TopBar(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Text(
-            text = Constants.Strings.APP_NAME,
+            text = stringResource(R.string.app_name),
             style = MaterialTheme.typography.headlineSmall,
             color = MaterialTheme.colorScheme.onBackground
         )

@@ -14,14 +14,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.example.andoriod_midori.R
 import com.example.andoriod_midori.ui.theme.Andoriod_midoriTheme
 import com.example.andoriod_midori.ui.theme.MidoriSpacing
 import com.example.andoriod_midori.utils.Constants
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,14 +65,14 @@ fun LoginScreen() {
         )
         
         Text(
-            text = Constants.Strings.APP_NAME,
+                            text = stringResource(R.string.app_name),
             style = MaterialTheme.typography.headlineMedium,
             color = MaterialTheme.colorScheme.onBackground,
-            modifier = Modifier.padding(bottom = MidoriSpacing.XXXL)
+                            modifier = Modifier.padding(bottom = MidoriSpacing.Size40)
         )
         
         Text(
-            text = Constants.Strings.LOGIN_MESSAGE,
+                            text = stringResource(R.string.login_message),
             style = MaterialTheme.typography.titleMedium,
             color = MaterialTheme.colorScheme.onBackground,
             textAlign = TextAlign.Center,
@@ -77,11 +81,11 @@ fun LoginScreen() {
         )
         
         Text(
-            text = Constants.Strings.LOGIN_SUBTITLE,
+                            text = stringResource(R.string.login_subtitle),
             style = MaterialTheme.typography.labelMedium,
             color = MaterialTheme.colorScheme.onBackground,
             textAlign = TextAlign.Center,
-            modifier = Modifier.padding(bottom = MidoriSpacing.XXXXXL)
+                            modifier = Modifier.padding(bottom = MidoriSpacing.Size64)
         )
         
         Spacer(modifier = Modifier.weight(1f))
@@ -122,7 +126,7 @@ fun LoginScreen() {
                 Spacer(modifier = Modifier.width(12.dp))
                 
                 Text(
-                    text = Constants.Strings.LOGIN_BUTTON,
+                    text = stringResource(R.string.login_button),
                     style = MaterialTheme.typography.labelMedium,
                     maxLines = 1
                 )

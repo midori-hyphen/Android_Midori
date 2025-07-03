@@ -11,11 +11,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import com.example.andoriod_midori.R
 import com.example.andoriod_midori.ui.theme.MidoriSpacing
 import com.example.andoriod_midori.ui.theme.ChatButtonBackground
 import com.example.andoriod_midori.ui.theme.ChatButtonBorder
@@ -95,7 +97,7 @@ fun FloatingChatButton(
             Spacer(modifier = Modifier.width(3.dp))
             
             Text(
-                text = Constants.Strings.CHAT,
+                                    text = stringResource(R.string.chat),
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Medium,
                 color = ChatButtonBorder,

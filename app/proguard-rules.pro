@@ -1,21 +1,41 @@
-# Add project specific ProGuard rules here.
-# You can control the set of applied configuration files using the
-# proguardFiles setting in build.gradle.
-#
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
+# Midori App ProGuard Configuration
 
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
+# Keep custom exception classes
+-keep class com.example.andoriod_midori.data.ui.MidoriError { *; }
 
-# Uncomment this to preserve the line number information for
-# debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
+# Hilt
+-dontwarn com.google.dagger.hilt.processor.internal.**
+-keep class dagger.hilt.android.lifecycle.HiltViewModelMap { *; }
 
-# If you keep the line number information, uncomment this to
-# hide the original source file name.
-#-renamesourcefileattribute SourceFile
+# Timber
+-keep class timber.log.** { *; }
+-dontwarn timber.log.**
+
+# Compose
+-keep class androidx.compose.** { *; }
+-dontwarn androidx.compose.**
+
+# Coil (for SVG support)
+-keep class coil.** { *; }
+-dontwarn coil.**
+
+# Keep data models
+-keep class com.example.andoriod_midori.data.models.** { *; }
+
+# Keep enum classes
+-keepclassmembers enum * { *; }
+
+# Keep Parcelable implementations
+-keepclassmembers class * implements android.os.Parcelable {
+    public static final android.os.Parcelable$Creator CREATOR;
+}
+
+# Preserve line numbers for debugging
+-keepattributes SourceFile,LineNumberTable
+
+# Remove logging in release builds
+-assumenosideeffects class timber.log.Timber* {
+    public static *** d(...);
+    public static *** v(...);
+    public static *** i(...);
+}

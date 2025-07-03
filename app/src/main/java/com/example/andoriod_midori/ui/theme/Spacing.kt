@@ -11,9 +11,9 @@ object MidoriSpacing {
     val L = 20.dp
     val XL = 24.dp
     val XXL = 32.dp
-    val XXXL = 40.dp
-    val XXXXL = 48.dp
-    val XXXXXL = 64.dp
+    val Size40 = 40.dp
+    val Size48 = 48.dp
+    val Size64 = 64.dp
     
     val IconToText = 12.dp
     val ButtonPaddingVertical = 9.dp
