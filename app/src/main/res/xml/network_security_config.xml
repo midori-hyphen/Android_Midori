@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- 프로덕션 환경 보안 설정 -->
+    <domain-config cleartextTrafficPermitted="false">
+        <!-- 허용된 도메인만 명시 -->
+        <domain includeSubdomains="true">api.midori.app</domain>
+        <domain includeSubdomains="true">firebaseapp.com</domain>
+        
+        <!-- 인증서 핀닝으로 중간자 공격 방지 -->
+        <pin-set expiration="2025-12-31">
+            <pin digest="SHA-256">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</pin>
+            <pin digest="SHA-256">YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY</pin>
+        </pin-set>
+        
+        <!-- 신뢰할 수 있는 CA만 허용 -->
+        <trust-anchors>
+            <certificates src="system"/>
+        </trust-anchors>
+    </domain-config>
+    
+    <!-- 디버그 빌드에서만 localhost 허용 -->
+    <debug-overrides>
+        <domain-config cleartextTrafficPermitted="true">
+            <domain includeSubdomains="true">10.0.2.2</domain>
+            <domain includeSubdomains="true">localhost</domain>
+        </domain-config>
+    </debug-overrides>
+</network-security-config> 
